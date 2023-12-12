@@ -12,7 +12,7 @@
 ### [https://gptbill.lonlie.cn/](https://gptbill.lonlie.cn/)
 ![image](https://github.com/lonlie/openai-chatgpt-billing/assets/12546332/d465d66a-89cd-4f49-ada3-a57f10882a22)
 
-## 基础接口：
+## 接口依据：
 相关功能基于官方的接口实现，主要是下面两个：
 > 账号订阅的情况（通过sees）：https://api.openai.com/v1/dashboard/billing/subscription
 
