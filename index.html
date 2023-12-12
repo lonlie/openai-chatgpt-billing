@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ChatGPT余额查询 OpenAI midjourney 账号购买充值</title>
+    <meta name="description" content='在线ChatGPT余额查询 OpenAI midjourney 账号购买充值，免登录'>
+    <meta name="keywords" content="openai,chatgpt,midjourney,gpt,gpt4,key,账号,充值,购买,查询,余额,查余额,额度">
+    <meta name="anthor" content="lonlie,wx:lonliecom">
+    <meta name="robots" content="openai,chatgpt,midjourney,gpt,gpt4,key,账号,充值,购买,查询,余额,查余额,额度">
+    <meta charset="UTF-8">
+    <style>
+        #query {
+            background-color: #f2f2f2;
+            padding: 20px;
+            text-align: center;
+        }
+
+        #query h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        #query input[type=text],
+        input[type=date] {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #f2f2f2;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        #query input[type=text]:focus-visible,
+        input[type=date]:focus-visible,
+        :focus {
+            outline: none;
+            border: 1px solid #4CAF50;
+        }
+
+        #query #key {
+            width: 480px;
+        }
+
+        #query button {
+            padding: 10px 35px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        #query button:hover {
+            background-color: #3e8e41;
+        }
+
+        #query button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        #query button.loading:before {
+            content: '';
+            position: absolute;
+            left: 18%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            border-top-color: rgba(255, 103, 104, 1);
+            animation: loading 1s ease-in-out infinite;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        #query table {
+            width: 70%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            border: 1px solid #ddd;
+            margin-top: 10px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        #query th,
+        #query td {
+            padding: 4px;
+            border: 1px solid #ddd;
+        }
+
+        #query th {
+            background-color: #e8e8e8;
+            font-size: 15px;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .item {
+            width: 140px;
+            height: 50px;
+            margin: 10px;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 2px 2px 5px #888888;
+            transition: all 0.5s ease;
+        }
+
+        .item:hover {
+            transform: scale(1.1);
+        }
+
+        .item-title {
+            font-weight: bold;
+            font-size: 12px;
+            margin: 5px 0 10px 0;
+        }
+
+        .item-value {
+            font-size: 16px;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .query-btn {
+            display: block;
+            margin: 20px auto;
+            width: 100px;
+            height: 50px;
+            border: none;
+            background-color: #4CAF50;
+            color: #fff;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.5s ease;
+        }
+
+        .query-btn:hover {
+            background-color: #3e8e41;
+        }
+
+        @keyframes loading {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        #products {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        #products table {
+            width: 65%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            border: 1px solid #ddd;
+            margin-bottom: 100px;
+        }
+
+        #products .logo {
+            width: 50px;
+            height: 50px;
+            vertical-align: inherit;
+            margin-right: 5px;
+        }
+
+        #products th,
+        #products td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        #products tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        #products td:nth-child(1) {
+            text-align: left;
+            padding-left: 30px;
+        }
+
+        #products td:nth-child(2) span::before {
+            content: "¥";
+        }
+
+        #products td:nth-child(2) {
+            color: red;
+            font-weight: bold;
+        }
+
+        #products th {
+            background-color: #f2f2f2;
+            font-size: 18px;
+        }
+
+        #products ul {
+            padding: 0;
+            padding-left: 20px;
+            text-align: left;
+            margin: 0;
+        }
+
+        #products .import {
+            color: red;
+        }
+
+        #customer-service {
+            position: fixed;
+            right: 20px;
+            top: 220px;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            background: white;
+        }
+
+        #customer-service img {
+            width: 200px;
+            height: 200px;
+        }
+
+        #customer-service p {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        #close-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 20px;
+            color: #aaa;
+            cursor: pointer;
+        }
+
+        #close-btn:hover {
+            color: #666;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+
+        .alert {
+            width: 40%;
+            margin: 0 auto;
+            text-align: left;
+            margin-bottom: 20px;
+            background-color: #FFF8DC;
+            color: #333333;
+            border: 2px solid #F44336;
+            border-radius: 10px;
+            padding: 0 10px 0 10px;
+            animation: shake 0.5s;
+            margin-bottom: 20px;
+        }
+
+        @keyframes shake {
+            0% {
+                transform: translateX(0);
+            }
+
+            10%,
+            90% {
+                transform: translateX(-10px);
+            }
+
+            30%,
+            70% {
+                transform: translateX(10px);
+            }
+
+            50% {
+                transform: translateX(0);
+            }
+        }
+
+        .message {
+            position: fixed;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #333;
+            padding: 10px;
+            border: 1px solid #F44336;
+            border-radius: 5px;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            z-index: 999;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            background: white;
+        }
+
+        td h2 {
+            font-size: medium;
+            display: inline;
+            font-weight: normal;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="query">
+        <form onsubmit="event.preventDefault(); queryBalance();">
+            <h2>💰ChatGPT OpenAI key 账号余额查询</h2>
+            <input type="text" name="key" id="key" placeholder="请输入OpenAI API key：sk-xxx或会话密钥sess-xxx" autofocus="true">
+            <input type="text" name="publicId" id="publicId" placeholder="用户ID（可空）：user-xxx"
+                title="用户公共ID（可空）：user-xxx">
+            <input type="date" name="specificDate" id="specificDate" title="指定查询日期（可空）">
+            <button type="submit" id="btn_submit">查询余额</button>
+            <p id="searchTips" style="font-size: 11px;"></p>
+            <div class="container" id="summary">
+                <div class="item">
+                    <div class="item-title">剩余额度</div>
+                    <div id="remaining-amount" class="item-value">-</div>
+                </div>
+                <div class="item">
+                    <div class="item-title">总额度</div>
+                    <div id="total-amount" class="item-value">-</div>
+                </div>
+                <div class="item">
+                    <div class="item-title">已用额度</div>
+                    <div id="used-amount" class="item-value">-</div>
+                </div>
+                <div class="item">
+                    <div class="item-title">是否绑卡</div>
+                    <div id="is-bound" class="item-value">-</div>
+                </div>
+                <div class="item">
+                    <div class="item-title">key到期时间</div>
+                    <div id="key-expiration" class="item-value">-</div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div id="products">
+        <div class="alert">
+            <p style="font-weight: bold;">⚠️⚠️⚠️使用ChatGPT的重要提醒：</p>
+            <p>
+                需要使用代理（尽量用美国节点），同时建议启用浏览器的无痕模式访问ChatGPT。API也需要代理，不要在香港服务器调用，否则封号。
+            </p>
+        </div>
+        <h2>🔥在售商品：ChatGPT OpenAI、Midjourney账号及充值
+            <br>
+            加右侧微信（<span class="import">lonliecom</span>），咨询代理合作销售、购买！
+        </h2>
+        <table>
+            <tr>
+                <th colspan="3">更新日期：<span class="import">2023-12-04</span></th>
+            </tr>
+            <tr>
+                <th>商品</th>
+                <th>价格</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td><img src="assets/chatgpt.png" class="logo">
+                    <h2>【推荐】稳定转发 GPT4 API Key额度</h2>
+                </td>
+                <td>
+                    <span>110（$50额度）</span><br>
+                    <span></span>1000（$500额度）</span>
+                </td>
+                <td>
+                    <ul>
+                        <li>
+                            $50-$499额度，价格比例1:2.2（$1售价2.2元）<br>
+                            $500以上额度，价格比例1:2（$1售价2元）<br>
+                        </li>
+                        <li>
+                            $50额度起购
+                        </li>
+                        <li>
+                            <span class="import">支持gpt3.5、gpt4、gpt4 turbo、gpt4 vision、tts、dalle等</span>
+                        </li>
+                        <li>
+                            提供key，可以自助查余额及明细
+                        </li>
+                        <li>
+                            后台使用官方key转发，稳定可靠，一分钟大概60-100次可以满足
+                        </li>
+                        <li>
+                            <span class="import">额度90天有效期，无封号问题</span>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><img src="assets/chatgpt.png" class="logo">
+                    <h2>小额直连 GPT4 API Key额度</h2>
+                </td>
+                <td>
+                    <span>540（$120独享额度）</span><br>
+                    <span>1740（$600共享额度）</span><br>
+                    <span>2100（$600独享额度）</span>
+                </td>
+                <td>
+                    <ul>
+                        <li>
+                            $120独享账号额度，价格比例1:4.5（$1售价4.5元）<br>
+                            $600共享账号额度，价格比例1:2.9（$1售价2.9元）<br>
+                            共享大号额度，速度快，足量额度，可自助查询用量<br>
+                            $600独享账号额度，价格比例1:3.5（$1售价3.5元）<br>
+                        </li>
+                        <li>
+                            <span class="import">支持gpt3.5、gpt4、gpt4 turbo、gpt4 vision、tts、dalle等</span>
+                        </li>
+                        <li>
+                            提供key，可以代查余额或提供reader账号
+                        </li>
+                        <li>
+                            <span class="import">额度当月有效，100%售后保障，封号补额度</span>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><img src="assets/chatgpt.png" class="logo">
+                    <h2>大额直连独享 GPT4 API Key额度</h2>
+                </td>
+                <td>
+                    <span>2800（$1000额度）</span><br>
+                    <span>11500（$5000额度）</span>
+                </td>
+                <td>
+                    <ul>
+                        <li>
+                            $1000-$4999独享账号额度<br>
+                            价格比例1:2.8（$1售价2.8元）<br>
+                            $5000独享账号额度，价格比例1:2.3（$1售价2.3元）<br>
+                        </li>
+                        <li>
+                            有1000 2500 5000 1w 1.5w 2w 3w 5w 10w 15w<br>多种规格独享额度
+                        </li>
+                        <li>
+                            <span class="import">支持gpt3.5、gpt4、gpt4 turbo、gpt4 vision、tts、dalle等</span>
+                        </li>
+                        <li>
+                            提供key，可以代查余额或提供reader账号
+                        </li>
+                        <li>
+                            <span class="import">额度当月有效，100%售后保障，封号补额度</span>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><img src="assets/chatgpt.png" class="logo">
+                    <h2>OpenAI代付账单、充值</h2>
+                </td>
+                <td>
+                    <span>425（$50）</span>
+                </td>
+                <td>
+                    <ul>
+                        <li>
+                            $500以内汇率1:8.5<br>
+                            $500以上汇率1:8<br>
+                        </li>
+                        <li>
+                            $50起付
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><img src="assets/chatgpt.png" class="logo">
+                    <h2>ChatGPT 5普通账号 3.5</h2>
+                </td>
+                <td><span>15</span></td>
+                <td>
+                    <ul>
+                        <li>
+                            提供账号、密码<span class="import">（部分账号支持修改密码）</span>
+                        </li>
+                        <li>
+                            账号初始余额<span class="import">$5</span>
+                        </li>
+                        <li>
+                            API频率限制：<br>
+                            每分钟3次请求，每分钟40000 tokens，每天200次请求
+                        </li>
+                        <li>
+                            售后24小时
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><img src="assets/chatgpt.png" class="logo">
+                    <h2>ChatGPT Plus共享账号 4.0</h2>
+                </td>
+                <td><span>60/月</span></td>
+                <td>
+                    <ul>
+                        <li>
+                            提供账号、密码<span class="import">（部分账号支持修改密码）</span>
+                        </li>
+                        <li>
+                            <span class="import">按月续费</span>，可以只使用一个月
+                        </li>
+                        <li>
+                            可以使用GPT4，目前限制每3小时提问40次
+                        </li>
+                        <li>
+                            包售后30天，封号掉线按天退款（未按重要提示使用，不包售后）
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><img src="assets/chatgpt.png" class="logo">
+                    <h2>ChatGPT Plus独享账号 4.0</h2>
+                </td>
+                <td><span>200/月</span></td>
+                <td>
+                    <ul>
+                        <li>
+                            提供账号、密码<span class="import">（部分账号支持修改密码）</span>
+                        </li>
+                        <li>
+                            <span class="import">按月续费</span>，可以只使用一个月
+                        </li>
+                        <li>
+                            可以使用GPT4，目前限制每3小时提问40次
+                        </li>
+                        <li>
+                            包售后30天，封号掉线按天退款（未按重要提示使用，不包售后）
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><img src="assets/chatgpt.png" class="logo">
+                    <h2>OpenAI API 中转通道</h2>
+                </td>
+                <td>
+                    <span>150/月</span><br>
+                    <span>1500/年</span>
+                </td>
+                <td>
+                    <ul>
+                        <li>
+                            提供OpenAI API中转通道，替代https://api.openai.com
+                        </li>
+                        <li>
+                            <span class="import">支持国内服务器直接调用OpenAI接口，无需额外代理</span>
+                        </li>
+                        <li>
+                            支持流式输出
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><img src="assets/chatgpt.png" class="logo">
+                    <h2>AI智能原创文章写作SEO批量生成器</h2>
+                </td>
+                <td><span>0.05/篇</span></td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="http://gen.zsxx.ren/"><span class="import">http://gen.zsxx.ren/</span></a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><img src="assets/chatgpt.png" class="logo">
+                    <h2>GPT对话机器人整套程序</h2>
+                </td>
+                <td><span>3000</span></td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="http://chatgpt.firstui.cn/"><span
+                                    class="import">http://chatgpt.firstui.cn/</span></a>
+                        </li>
+                        <li>
+                            会员体系、支付、代理
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><img src="assets/midjourney.png" class="logo">
+                    <h2>Midjourney 30/60账号</h2>
+                </td>
+                <td><span>260/485</span></td>
+                <td>
+                    <ul>
+                        <li>
+                            提供账号、密码
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="customer-service">
+        <span id="close-btn" onclick="closeCustomerService()">&times;</span>
+        <img src="assets/wx.png" alt="在线微信客服">
+        <p>🤝欢迎咨询、合作、交流🤝</p>
+    </div>
+
+    <div class="message"></div>
+
+    <script>
+        document.getElementById("searchTips").innerHTML = "用量数据按日期查询后汇总，目前官方对单个key查询请求限制为5次/分钟，今日查询当月总用量预计需要<span style='color: chocolate;font-weight: bold;'>" + (Math.ceil(new Date().getDate() / 5) - 1) + "</span>分钟";
+
+        function queryBalance(event) {
+            var key = document.getElementById("key").value;
+            var publicId = document.getElementById("publicId").value;
+            var specificDate = document.getElementById("specificDate").value;
+
+            if (!(/(^sk-[a-zA-Z0-9]{48}$)|(^sess-[a-zA-Z0-9]{40}$)/.test(key))) {
+                showMessage("输入的key有误！", 0);
+                return;
+            }
+
+            if (publicId.trim() != "" && !(/(^user-[a-zA-Z0-9]{24}$)/.test(publicId))) {
+                showMessage("输入的用户公共ID有误！", 0);
+                return;
+            }
+
+            var btn = document.getElementById("btn_submit");
+            btn.classList.add('loading');
+            btn.disabled = true;
+            var remainingAmount = document.getElementById('remaining-amount');
+            var totalAmount = document.getElementById('total-amount');
+            var usedAmount = document.getElementById('used-amount');
+            var isBound = document.getElementById('is-bound');
+            var keyExpiration = document.getElementById('key-expiration');
+            var queryBtn = document.getElementById('query-btn');
+
+            remainingAmount.innerHTML = "-";
+            totalAmount.innerHTML = "-";
+            usedAmount.innerHTML = "-";
+            isBound.innerHTML = "-";
+            keyExpiration.innerHTML = "-";
+
+            var oldTable = document.getElementById('detailTable');
+            if (oldTable != null) {
+                oldTable.remove();
+            }
+
+            if (key.startsWith("sees-") || specificDate.trim() != "") {
+                ajax({
+                    method: 'GET',
+                    url: 'https://api.yourdomain.com/api/main/bill?key=' + key + '&ext=1652831557593' + '&publicId=' + publicId + '&beginDate=' + specificDate + '&endDate=' + specificDate
+                }).then(function (response) {
+                    var data = JSON.parse(response).data;
+                    var result = data.returnObject;
+                    if (data.isPass) {
+                        if (key.startsWith("sees-")) {
+                            remainingAmount.innerHTML = "$" + result.remaining.toFixed(7);
+                            totalAmount.innerHTML = "$" + result.total.toFixed(7);
+                            usedAmount.innerHTML = "$" + result.usage.toFixed(7);
+                            isBound.innerHTML = result.bind ? "是" : "否";
+                            keyExpiration.innerHTML = (new Date(result.util * 1000)).toLocaleString();
+                        } else {
+                            usedAmount.innerHTML = "$" + result.usage.toFixed(7);
+                        }
+                    } else {
+                        showMessage(data.desc, 1);
+                    }
+                }).catch(function (error) {
+                    showMessage("查询失败！！", 1);
+                }).finally(function () {
+                    btn.classList.remove('loading');
+                    btn.disabled = false;
+                });
+            } else {
+                var dateArray = generateDateArray();
+                let index = 0;
+                var usageDetail = [];
+
+                var queryCore = function () {
+                    const item = dateArray[index];
+                    ajax({
+                        method: 'GET',
+                        url: 'https://api.yourdomain.com/api/main/bill?key=' + key + '&ext=1652831557593' + '&publicId=' + publicId + '&beginDate=' + item[0].toLocaleString() + '&endDate=' + item[1].toLocaleString()
+                    }).then(function (response) {
+                        var data = JSON.parse(response).data;
+                        var result = data.returnObject;
+
+                        if (data.isPass) {
+                            usageDetail.push(...result.detail);
+                            showUsageDetail(usageDetail, index === dateArray.length);
+                        } else {
+                            showMessage(data.desc, 1);
+                        }
+                    }).catch(function (error) {
+                        showMessage("查询失败！！", 1);
+                    });
+
+                    index++;
+                    if (index === dateArray.length) {
+                        clearInterval(queryInterval);
+
+                        btn.classList.remove('loading');
+                        btn.disabled = false;
+                    }
+                };
+
+                queryCore();
+                const queryInterval = setInterval(queryCore, 60000);
+            }
+        }
+        
+        function showUsageDetail(usageDetail, end) {
+            var oldTable = document.getElementById('detailTable');
+            if (oldTable != null) {
+                oldTable.remove();
+            }
+
+            const models = [...new Set(usageDetail.flatMap(i => i.data.map(entry => entry.model)))].sort();
+
+            const modelTotals = models.reduce((acc, model) => {
+                acc[model] = 0;
+                return acc;
+            }, {});
+
+            const table = document.createElement('table');
+            table.setAttribute("id", "detailTable");
+            const thead = document.createElement('thead');
+            const tbody = document.createElement('tbody');
+            table.appendChild(thead);
+            table.appendChild(tbody);
+
+            const headerRow = document.createElement('tr');
+            const dateHeader = document.createElement('th');
+            dateHeader.textContent = '日期';
+            headerRow.appendChild(dateHeader);
+            models.forEach(model => {
+                const modelHeader = document.createElement('th');
+                modelHeader.textContent = model;
+                headerRow.appendChild(modelHeader);
+            });
+            const subtotalHeader = document.createElement('th');
+            subtotalHeader.textContent = '合计';
+            headerRow.appendChild(subtotalHeader);
+            thead.appendChild(headerRow);
+
+            usageDetail.forEach(i => {
+                const row = document.createElement('tr');
+                const dateCell = document.createElement('td');
+                dateCell.textContent = i.date;
+                row.appendChild(dateCell);
+
+                let subtotal = 0;
+                models.forEach(model => {
+                    const modelCell = document.createElement('td');
+                    const modelData = i.data.find(entry => entry.model === model);
+                    const amount = modelData ? modelData.amount : 0;
+                    modelCell.textContent = amount.toFixed(2);
+                    row.appendChild(modelCell);
+                    subtotal += amount;
+                    modelTotals[model] += amount;
+                });
+                const subtotalCell = document.createElement('td');
+                subtotalCell.textContent = subtotal.toFixed(2);
+                row.appendChild(subtotalCell);
+
+                tbody.appendChild(row);
+            });
+
+            const summaryRow = document.createElement('tr');
+            const summaryDateCell = document.createElement('td');
+            summaryDateCell.textContent = '汇总';
+            summaryRow.appendChild(summaryDateCell);
+
+            let grandTotal = 0;
+            models.forEach(model => {
+                const summaryModelCell = document.createElement('td');
+                summaryModelCell.textContent = modelTotals[model].toFixed(2);
+                summaryRow.appendChild(summaryModelCell);
+                grandTotal += modelTotals[model];
+            });
+
+            const grandTotalCell = document.createElement('td');
+            grandTotalCell.textContent = grandTotal.toFixed(2);
+            summaryRow.appendChild(grandTotalCell);
+            if (end) {
+                document.getElementById('used-amount').innerHTML = "$" + grandTotal.toFixed(2);
+            }
+
+            tbody.insertBefore(summaryRow, tbody.firstChild);
+
+            document.getElementById("summary").appendChild(table);
+        }
+
+        function generateDateArray() {
+            const ranges = [];
+            const currentDate = new Date();
+            const startOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+
+            let startDate = startOfMonth;
+            let endDate = new Date(startOfMonth);
+
+            while (startDate < currentDate) {
+                endDate = new Date(startDate);
+                endDate.setDate(startDate.getDate() + 4);
+
+                if (endDate > currentDate) {
+                    endDate = currentDate;
+                }
+
+                ranges.push([
+                    startDate,
+                    endDate
+                ]);
+
+                startDate = new Date(endDate);
+                startDate.setDate(endDate.getDate() + 1);
+            }
+
+            return ranges;
+        }
+
+        function showMessage(msg, type) {
+            var message = document.querySelector('.message');
+            message.innerHTML = (type == 0 ? "⚠️⚠️⚠️" : "🚨🚨🚨") + msg;
+            message.style.opacity = 1;
+            setTimeout(function () {
+                message.style.opacity = 0;
+            }, 3000);
+        }
+
+        function closeCustomerService() {
+            document.getElementById("customer-service").style.display = "none";
+        }
+
+        function ajax(options) {
+            return new Promise(function (resolve, reject) {
+                var xhr = new XMLHttpRequest();
+                xhr.open(options.method || 'GET', options.url);
+                xhr.onload = function () {
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        resolve(xhr.response);
+                    } else {
+                        reject(new Error(xhr.statusText));
+                    }
+                };
+                xhr.onerror = function () {
+                    reject(new Error('Network Error'));
+                };
+                xhr.send(options.data);
+                xhr.finally = function (callback) {
+                    xhr.onload = function () {
+                        callback();
+                    };
+                    xhr.onerror = function () {
+                        callback();
+                    };
+                };
+            });
+        }
+
+    </script>
+</body>
+
+</html>
