@@ -1,7 +1,7 @@
 # openai-chatgpt-billing
 
 ## 2024-1-12 更新
-* 基于用量明细接口(https://api.openai.com/v1/dashboard/activity?end_date=2024-02-01&start_date=2024-01-01 )，可以支持按key统计用量
+* 基于用量明细接口( https://api.openai.com/v1/dashboard/activity?end_date=2024-02-01&start_date=2024-01-01 )，可以支持按key统计用量
 
 ## 说明：
 * 本项目实现实现免登录查询OpenAI ChatGPT用量及余额，包含前端html页面和后端的主要逻辑，简洁高效，可以自己部署实现。 
