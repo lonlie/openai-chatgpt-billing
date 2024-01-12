@@ -45,6 +45,9 @@ namespace MyTest
         public int n_context_tokens_total { get; set; }
         public int n_generated_tokens_total { get; set; }
         public string user_id { get; set; }
+        public string api_key_id { get; set; }
+        public string api_key_name { get; set; }
+        public string api_key_redacted { get; set; }
     }
 
     public class UsageDalleData
@@ -56,6 +59,9 @@ namespace MyTest
         public string operation { get; set; }
         public string user_id { get; set; }
         public string organization_id { get; set; }
+        public string api_key_id { get; set; }
+        public string api_key_name { get; set; }
+        public string api_key_redacted { get; set; }
     }
 
     /// <summary>
@@ -309,6 +315,76 @@ namespace MyTest
                 {
 
                 }
+            }
+
+            return result;
+        }
+
+                /// <summary>
+        /// 可以区分每个key的用量
+        /// </summary>
+        private List<UsageData> GetUsageByPerKey(HttpClient client, string keyName, string keyId, string sess, DateTime? beginDate, DateTime? endDate)
+        {
+            var result = new List<UsageData>();
+
+            if (beginDate == null || endDate == null)
+            {
+                DateTime now = DateTime.Now;
+                beginDate = new DateTime(now.Year, now.Month, 1);
+                endDate = now;
+            }
+
+            if ((endDate - beginDate).Value.Days > 31)
+            {
+                return result;
+            }
+
+            endDate = endDate.Value.AddDays(20);
+
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sess);
+
+            try
+            {
+                string urlUsage = $"{apiDomain}/v1/dashboard/activity?end_date={endDate:yyyy-MM-dd}&start_date={beginDate:yyyy-MM-dd}";
+
+                var response = client.GetAsync(urlUsage).Result;
+                var usageDataString = response.Content.ReadAsStringAsync().Result;
+                var usageData = JObject.Parse(usageDataString);
+
+                for (var date = beginDate.Value; date <= endDate; date = date.AddDays(1))
+                {
+                    var timestamp = new DateTimeOffset(date.Date.AddHours(8)).ToUnixTimeSeconds();
+                    var chatData = ((JArray)usageData["data"]).ToObject<List<UsageChatData>>().Where(m => m.api_key_id == keyId && m.aggregation_timestamp == timestamp).ToList();
+                    var dalleData = ((JArray)usageData["dalle_api_data"]).ToObject<List<UsageDalleData>>().Where(m => m.api_key_id == keyId && m.timestamp == timestamp).ToList();
+
+                    var usageResult = chatData.
+                        Select(m => new { m.snapshot_id, m.n_context_tokens_total, m.n_generated_tokens_total, amount = chatPrices[m.snapshot_id].Item1 * m.n_context_tokens_total + chatPrices[m.snapshot_id].Item2 * m.n_generated_tokens_total }).GroupBy(m => m.snapshot_id).
+                        Select(m => new UsageDataItem() { model = m.Key, context_tokens_total = m.Sum(t => t.n_context_tokens_total), generated_tokens_total = m.Sum(t => t.n_generated_tokens_total), amount = Math.Round(m.Sum(t => t.amount) / 1000, 2, MidpointRounding.AwayFromZero), count = m.Count(), exact = true }).ToList();
+
+                    var dalleUsage = dalleData.Select(m =>
+                    {
+                        var size = (m.image_size == "1024x1024" && m.num_images > 2) ? "1024x1024>2" : m.image_size;
+                        var price = dallePrices[size].Item1;
+                        if (keyName.Contains("guoke") && (size == "1024x1024" || size == "1024x1024>2"))
+                        {
+                            price = 0.04d;
+                        }
+                        if (keyName.Contains("guoke") && (size == "1792x1024" || size == "1024x1792"))
+                        {
+                            price = 0.08d;
+                        }
+                        return new { amount = price * m.num_images, m.num_requests, exact = dallePrices[size].Item2 };
+                    }).ToList();
+
+                    //增加dalle相关的数据
+                    usageResult.Add(new UsageDataItem() { model = "dalle", context_tokens_total = 0, generated_tokens_total = 0, amount = Math.Round(dalleUsage.Sum(m => m.amount), 2, MidpointRounding.AwayFromZero), count = dalleUsage.Sum(m => m.num_requests), exact = !dalleUsage.Any(m => !m.exact) });
+
+                    result.Add(new UsageData() { date = date.ToString("yyyy-MM-dd"), data = usageResult.OrderBy(m => m.model).ToList() });
+                }
+            }
+            catch (Exception ex)
+            {
+
             }
 
             return result;
