@@ -2,13 +2,45 @@
 <html>
 
 <head>
-    <title>ChatGPT余额查询 OpenAI midjourney 账号购买充值</title>
-    <meta name="description" content='在线ChatGPT余额查询 OpenAI midjourney 账号购买充值，免登录'>
-    <meta name="keywords" content="openai,chatgpt,midjourney,gpt,gpt4,key,账号,充值,购买,查询,余额,查余额,额度">
+    <title>ChatGPT余额查询 OpenAI midjourney 账号购买充值代充</title>
+    <meta name="description" content='在线ChatGPT余额查询 OpenAI midjourney 账号购买充值代充，免登录'>
+    <meta name="keywords" content="openai,chatgpt,midjourney,gpt,gpt4,key,账号,充值,购买,代充,查询,余额,查余额,额度">
     <meta name="anthor" content="lonlie,wx:lonliecom">
-    <meta name="robots" content="openai,chatgpt,midjourney,gpt,gpt4,key,账号,充值,购买,查询,余额,查余额,额度">
+    <meta name="robots" content="openai,chatgpt,midjourney,gpt,gpt4,key,账号,充值,购买,代充,查询,余额,查余额,额度">
     <meta charset="UTF-8">
     <style>
+        .github-corner:hover .octo-arm {
+            animation: octocat-wave 560ms ease-in-out;
+        }
+
+        @keyframes octocat-wave {
+
+            0%,
+            100% {
+                transform: rotate(0);
+            }
+
+            20%,
+            60% {
+                transform: rotate(-25deg);
+            }
+
+            40%,
+            80% {
+                transform: rotate(10deg);
+            }
+        }
+
+        @media (max-width:500px) {
+            .github-corner:hover .octo-arm {
+                animation: none;
+            }
+
+            .github-corner .octo-arm {
+                animation: octocat-wave 560ms ease-in-out;
+            }
+        }
+
         #query {
             background-color: #f2f2f2;
             padding: 20px;
@@ -23,10 +55,10 @@
         #query input[type=text],
         input[type=date] {
             padding: 10px;
-            font-size: 16px;
+            font-size: 15px;
             border: 1px solid #f2f2f2;
             border-radius: 5px;
-            margin-right: 10px;
+            margin-right: 5px;
         }
 
         #query input[type=text]:focus-visible,
@@ -37,7 +69,12 @@
         }
 
         #query #key {
-            width: 480px;
+            width: 450px;
+        }
+
+        #query #beginDate,
+        #query #endDate {
+            width: 100px;
         }
 
         #query button {
@@ -63,7 +100,7 @@
         #query button.loading:before {
             content: '';
             position: absolute;
-            left: 18%;
+            left: 12%;
             top: 50%;
             transform: translate(-50%, -50%);
             width: 12px;
@@ -320,18 +357,81 @@
             display: inline;
             font-weight: normal;
         }
+
+        .nav {
+            position: fixed;
+            left: 0px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav a {
+            background: #1E90FF;
+            color: #fff;
+            text-align: left;
+            line-height: 30px;
+            text-decoration: none;
+            font-size: 16px;
+            margin-bottom: 5px;
+            padding: 10px;
+            border-radius: 0 8px 8px 0;
+            transition: all 0.3s ease;
+            width: 240px;
+        }
+
+        .nav a:hover {
+            background: #4169E1;
+            width: 260px;
+        }
     </style>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?13ff43d52a01e795ed56fea66c3b6b4f";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
 </head>
 
 <body>
+    <a href="https://github.com/lonlie/openai-chatgpt-billing" class="github-corner" aria-label="View source on GitHub">
+        <svg width="80" height="80" viewBox="0 0 250 250"
+            style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+            <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+            <path
+                d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+                fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm">
+            </path>
+            <path
+                d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+                fill="currentColor" class="octo-body">
+            </path>
+        </svg>
+    </a>
+    <div class="nav">
+        <a href="https://gptbill.lonlie.cn/" target="_blank">余额及用量查询</a>
+        <a href="https://gptbill.lonlie.cn/pricinglimits.html" target="_blank">最新最全模型model价格及限速表</a>
+        <a href="https://gptbill.lonlie.cn/pricinglimits.html" target="_blank">tokens计算器</a>
+    </div>
+
     <div id="query">
         <form onsubmit="event.preventDefault(); queryBalance();">
             <h2>💰ChatGPT OpenAI key 账号余额查询</h2>
-            <input type="text" name="key" id="key" placeholder="请输入OpenAI API key：sk-xxx或会话密钥sess-xxx" autofocus="true">
-            <input type="text" name="publicId" id="publicId" placeholder="用户ID（可空）：user-xxx"
-                title="用户公共ID（可空）：user-xxx">
-            <input type="date" name="specificDate" id="specificDate" title="指定查询日期（可空）">
-            <button type="submit" id="btn_submit">查询余额</button>
+            <input type="text" name="key" id="key" placeholder="请输入OpenAI API key(sk-xxx)或会话密钥(sess-xxx)"
+                autofocus="true">
+            <input type="text" name="api" id="api" placeholder="中转域名(可空):https://www.xxx.com"
+                title="中转域名(可空):https://www.xxx.com">
+            <input type="text" name="publicId" id="publicId" placeholder="用户ID(可空):user-xxx"
+                title="用户公共ID(可空):user-xxx">
+            <input type="date" name="beginDate" id="beginDate" title="指定查询起始日期(可空)">
+            <span style="margin-left: -10px">-</span>
+            <input type="date" name="endDate" id="endDate" title="指定查询截止日期(可空)">
+            <button type="submit" id="btn_submit">查询用量与余额</button>
             <p id="searchTips" style="font-size: 11px;"></p>
             <div class="container" id="summary">
                 <div class="item">
