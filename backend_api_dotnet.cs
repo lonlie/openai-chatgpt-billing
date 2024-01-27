@@ -31,6 +31,7 @@ namespace MyTest
         [Required]
         public string ext { get; set; }
         public string publicId { get; set; }
+        public string api { get; set; }
         public DateTime? beginDate { get; set; }
         public DateTime? endDate { get; set; }
     }
@@ -142,12 +143,24 @@ namespace MyTest
         public async Task<ResultSingle<dynamic>> TesQuery(QueryBillDto dto)
         {
             var result = new ResultSingle<dynamic>();
+            var hasAPI = !string.IsNullOrWhiteSpace(dto.api);
 
             if (dto.ext != "1652831557593")
             {
                 result.Status = RStatus.S9999;
                 result.Desc = "非法请求";
                 return result;
+            }
+
+            //指定api
+            if (hasAPI)
+            {
+                dto.api = dto.api.Trim().Replace("/v1","");
+                if (dto.api.EndsWith("/"))
+                {
+                    dto.api = dto.api.Remove(dto.api.Length - 1);
+                }
+                apiDomain = dto.api;
             }
 
             // 计算起始日期和结束日期
@@ -197,12 +210,12 @@ namespace MyTest
                 }
 
                 //按原逻辑走
-                if (!useKey)
+                if (!useKey || (useKey && hasAPI))
                 {
                     // 判断是否过期
                     long timestamp_now = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
                     long timestamp_expire = (long)subscriptionData["access_until"];
-                    if (timestamp_now > timestamp_expire)
+                    if (!hasAPI && timestamp_now > timestamp_expire)
                     {
                         result.Status = RStatus.S9999;
                         result.Desc = "对应账户额度已过期, 请登录OpenAI进行查看。";
@@ -239,9 +252,6 @@ namespace MyTest
                 //使用key按天查询
                 else
                 {
-                    //useKey=true，不显示总额和到期时间、显示详情
-                    //useKey=false，显示总额和到期时间、不显示详情
-
                     //按天查询，汇总结果
                     var usageData = GetUsageByKey(client, dto.key, dto.publicId, dto.beginDate, dto.endDate);
 
