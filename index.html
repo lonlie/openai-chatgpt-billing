@@ -739,7 +739,7 @@
             var publicId = document.getElementById("publicId").value;
             var specificDate = document.getElementById("specificDate").value;
 
-            if (!(/(^sk-[a-zA-Z0-9]{48}$)|(^sess-[a-zA-Z0-9]{40}$)/.test(key))) {
+            if (!(/(^sk(-proj)?-[a-zA-Z0-9]{48}$)|(^sess-[a-zA-Z0-9]{40}$)/.test(key))) {
                 showMessage("输入的key有误！", 0);
                 return;
             }
