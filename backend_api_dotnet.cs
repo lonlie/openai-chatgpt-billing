@@ -98,6 +98,7 @@ namespace MyTest
                     { "gpt-3.5-turbo-0301", new Tuple<double, double>(0.0015, 0.002) },
                     { "gpt-3.5-turbo-0613", new Tuple<double, double>(0.0015, 0.002) },
                     { "gpt-3.5-turbo-1106", new Tuple<double, double>(0.0015, 0.002) },
+                    { "gpt-3.5-turbo-0125", new Tuple<double, double>(0.0005, 0.0015) },
                     { "gpt-3.5-turbo-instruct", new Tuple<double, double>(0.0015, 0.002) },
                     { "gpt-3.5-turbo-instruct-0914", new Tuple<double, double>(0.0015, 0.002) },
                     { "gpt-3.5-turbo-16k", new Tuple<double, double>(0.003, 0.004) },
@@ -105,19 +106,27 @@ namespace MyTest
                     { "gpt-4", new Tuple<double, double>(0.03, 0.06) },
                     { "gpt-4-0314", new Tuple<double, double>(0.03, 0.06) },
                     { "gpt-4-0613", new Tuple<double, double>(0.03, 0.06) },
+                    { "gpt-4-turbo", new Tuple<double, double>(0.01, 0.03) },
+                    { "gpt-4-turbo-2024-04-09", new Tuple<double, double>(0.01, 0.03) },
+                    { "gpt-4-turbo-preview", new Tuple<double, double>(0.01, 0.03) },
+                    { "gpt-4-0125-preview", new Tuple<double, double>(0.01, 0.03) },
                     { "gpt-4-1106-preview", new Tuple<double, double>(0.01, 0.03) },
                     { "gpt-4-vision-preview", new Tuple<double, double>(0.01, 0.03) },
+                    { "gpt-4-1106-vision-preview", new Tuple<double, double>(0.01, 0.03) },
                     { "gpt-4-32k", new Tuple<double, double>(0.06, 0.12) },
                     { "gpt-4-32k-0314", new Tuple<double, double>(0.06, 0.12) },
                     { "gpt-4-32k-0613", new Tuple<double, double>(0.06, 0.12) },
                     { "text-ada-001", new Tuple<double, double>(0.0004, 0.0004) },
+                    { "davinci", new Tuple<double, double>(0.002, 0.002) },
                     { "text-babbage-001", new Tuple<double, double>(0.0005, 0.0005) },
                     { "text-curie-001", new Tuple<double, double>(0.002, 0.002) },
                     { "text-davinci-001", new Tuple<double, double>(0.02, 0.02) },
                     { "text-davinci-002", new Tuple<double, double>(0.02, 0.02) },
                     { "text-davinci-003", new Tuple<double, double>(0.02, 0.02) },
                     { "text-embedding-ada-002", new Tuple<double, double>(0.0001, 0.0001) },
-                    { "text-embedding-ada-002-v2", new Tuple<double, double>(0.0001, 0.0001) }
+                    { "text-embedding-ada-002-v2", new Tuple<double, double>(0.0001, 0.0001) },
+                    { "text-embedding-3-small", new Tuple<double, double>(0.00013, 0.00013) },
+                    { "text-embedding-3-large", new Tuple<double, double>(0.0004, 0.0004) }
                 };
 
         //dalle相关模型的价格，image_size Tuple<price,是否为精确价格>
