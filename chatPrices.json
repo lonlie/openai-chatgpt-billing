@@ -1,0 +1,150 @@
+{
+  "gpt-3.5-turbo": {
+    "Item1": 0.0015,
+    "Item2": 0.002
+  },
+  "gpt-3.5-turbo-0301": {
+    "Item1": 0.0015,
+    "Item2": 0.002
+  },
+  "gpt-3.5-turbo-0613": {
+    "Item1": 0.0015,
+    "Item2": 0.002
+  },
+  "gpt-3.5-turbo-1106": {
+    "Item1": 0.0015,
+    "Item2": 0.002
+  },
+  "gpt-3.5-turbo-0125": {
+    "Item1": 0.0005,
+    "Item2": 0.0015
+  },
+  "gpt-3.5-turbo-instruct": {
+    "Item1": 0.0015,
+    "Item2": 0.002
+  },
+  "gpt-3.5-turbo-instruct-0914": {
+    "Item1": 0.0015,
+    "Item2": 0.002
+  },
+  "gpt-3.5-turbo-16k": {
+    "Item1": 0.003,
+    "Item2": 0.004
+  },
+  "gpt-3.5-turbo-16k-0613": {
+    "Item1": 0.003,
+    "Item2": 0.004
+  },
+  "gpt-4o": {
+    "Item1": 0.005,
+    "Item2": 0.015
+  },
+  "gpt-4o-2024-05-13": {
+    "Item1": 0.005,
+    "Item2": 0.015
+  },
+  "gpt-4": {
+    "Item1": 0.03,
+    "Item2": 0.06
+  },
+  "gpt-4-0314": {
+    "Item1": 0.03,
+    "Item2": 0.06
+  },
+  "gpt-4-0613": {
+    "Item1": 0.03,
+    "Item2": 0.06
+  },
+  "gpt-4-turbo": {
+    "Item1": 0.01,
+    "Item2": 0.03
+  },
+  "gpt-4-turbo-2024-04-09": {
+    "Item1": 0.01,
+    "Item2": 0.03
+  },
+  "gpt-4-turbo-preview": {
+    "Item1": 0.01,
+    "Item2": 0.03
+  },
+  "gpt-4-0125-preview": {
+    "Item1": 0.01,
+    "Item2": 0.03
+  },
+  "gpt-4-1106-preview": {
+    "Item1": 0.01,
+    "Item2": 0.03
+  },
+  "gpt-4-vision-preview": {
+    "Item1": 0.01,
+    "Item2": 0.03
+  },
+  "gpt-4-1106-vision-preview": {
+    "Item1": 0.01,
+    "Item2": 0.03
+  },
+  "gpt-4-32k": {
+    "Item1": 0.06,
+    "Item2": 0.12
+  },
+  "gpt-4-32k-0314": {
+    "Item1": 0.06,
+    "Item2": 0.12
+  },
+  "gpt-4-32k-0613": {
+    "Item1": 0.06,
+    "Item2": 0.12
+  },
+  "text-ada-001": {
+    "Item1": 0.0004,
+    "Item2": 0.0004
+  },
+  "davinci": {
+    "Item1": 0.002,
+    "Item2": 0.002
+  },
+  "text-babbage-001": {
+    "Item1": 0.0005,
+    "Item2": 0.0005
+  },
+  "text-curie-001": {
+    "Item1": 0.002,
+    "Item2": 0.002
+  },
+  "text-davinci-001": {
+    "Item1": 0.02,
+    "Item2": 0.02
+  },
+  "text-davinci-002": {
+    "Item1": 0.02,
+    "Item2": 0.02
+  },
+  "text-davinci-003": {
+    "Item1": 0.02,
+    "Item2": 0.02
+  },
+  "text-embedding-ada-002": {
+    "Item1": 0.0001,
+    "Item2": 0.0001
+  },
+  "text-embedding-ada-002-v2": {
+    "Item1": 0.0001,
+    "Item2": 0.0001
+  },
+  "text-embedding-3-small": {
+    "Item1": 0.00013,
+    "Item2": 0.00013
+  },
+  "text-embedding-3-large": {
+    "Item1": 0.0004,
+    "Item2": 0.0004
+  },
+  "ft:gpt-3.5-turbo-1106:yy17-5k-006:mal-api8:8jpYHsmM": {
+    "Item1": 0.003,
+    "Item2": 0.006
+  },
+  "ft:gpt-3.5-turbo-0613:yy17-5k-006:diabetes2-2:8kYyoVNN": {
+    "Item1": 0.003,
+    "Item2": 0.006
+  }
+}
