@@ -145,6 +145,15 @@ namespace MyTest
         [TestMethod]
         public void TesQueryBase()
         {
+            try
+            {
+                string jsonString = File.ReadAllText("chatPrices.json");
+                chatPrices = JsonSerializer.Deserialize<Dictionary<string, Tuple<double, double>>>(jsonString);
+            }
+            catch (Exception ex)
+            {
+
+            }
             QueryBillDto dto = new QueryBillDto() { key = "sk-LE4XuFtT17c6kFJwLdeLUF4zOWOyjDXeNYiXo1BqYnuT3Blb", publicId = "user-nNchTlf0bOsxdsaTUFuZdPaw", ext = "1652831557593", beginDate = DateTime.Now.AddDays(-5), endDate = DateTime.Now.AddDays(-5) };
             var x = TesQuery(dto).Result;
         }
