@@ -1,158 +1,158 @@
 {
   "gpt-4o-realtime-preview": {
     "Item1": 0.005,
-    "Item2": 0.005
+    "Item2": 0.02
   },
   "gpt-4o-realtime-preview-2024-10-01": {
     "Item1": 0.005,
-    "Item2": 0.005
+    "Item2": 0.02
   },
   "o1-preview": {
     "Item1": 0.015,
-    "Item2": 0.015
+    "Item2": 0.06
   },
   "o1-preview-2024-09-12": {
     "Item1": 0.015,
-    "Item2": 0.015
+    "Item2": 0.06
   },
   "o1-mini": {
     "Item1": 0.003,
-    "Item2": 0.003
+    "Item2": 0.012
   },
   "o1-mini-2024-09-12": {
     "Item1": 0.003,
-    "Item2": 0.003
+    "Item2": 0.012
   },
   "gpt-4o": {
     "Item1": 0.0025,
-    "Item2": 0.0025
+    "Item2": 0.01
   },
   "gpt-4o-2024-08-06": {
     "Item1": 0.0025,
-    "Item2": 0.0025
+    "Item2": 0.01
   },
   "gpt-4o-2024-05-13": {
     "Item1": 0.005,
-    "Item2": 0.005
+    "Item2": 0.015
   },
   "gpt-4o-mini": {
     "Item1": 0.00015,
-    "Item2": 0.00015
+    "Item2": 0.0006
   },
   "gpt-4o-mini-2024-07-18": {
     "Item1": 0.00015,
-    "Item2": 0.00015
+    "Item2": 0.0006
   },
   "gpt-3.5-turbo": {
     "Item1": 0.0005,
-    "Item2": 0.0005
+    "Item2": 0.0015
   },
   "gpt-3.5-turbo-0125": {
     "Item1": 0.0005,
-    "Item2": 0.0005
+    "Item2": 0.0015
   },
   "gpt-3.5-turbo-0613": {
     "Item1": 0.0015,
-    "Item2": 0.0015
+    "Item2": 0.002
   },
   "gpt-3.5-turbo-1106": {
     "Item1": 0.001,
-    "Item2": 0.001
+    "Item2": 0.002
   },
   "gpt-3.5-turbo-16k": {
     "Item1": 0.003,
-    "Item2": 0.003
+    "Item2": 0.004
   },
   "gpt-3.5-turbo-16k-0613": {
     "Item1": 0.003,
-    "Item2": 0.003
+    "Item2": 0.004
   },
   "gpt-3.5-turbo-instruct": {
     "Item1": 0.0015,
-    "Item2": 0.0015
+    "Item2": 0.002
   },
   "gpt-3.5-turbo-instruct-0914": {
     "Item1": 0.0015,
-    "Item2": 0.0015
+    "Item2": 0.002
   },
   "gpt-4": {
     "Item1": 0.03,
-    "Item2": 0.03
+    "Item2": 0.06
   },
   "gpt-4-0314": {
     "Item1": 0.03,
-    "Item2": 0.03
+    "Item2": 0.06
   },
   "gpt-4-0613": {
     "Item1": 0.03,
-    "Item2": 0.03
+    "Item2": 0.06
   },
   "gpt-4-turbo": {
     "Item1": 0.01,
-    "Item2": 0.01
+    "Item2": 0.03
   },
   "gpt-4-turbo-2024-04-09": {
     "Item1": 0.01,
-    "Item2": 0.01
+    "Item2": 0.03
   },
   "gpt-4-turbo-preview": {
     "Item1": 0.01,
-    "Item2": 0.01
+    "Item2": 0.03
   },
   "gpt-4-0125-preview": {
     "Item1": 0.01,
-    "Item2": 0.01
+    "Item2": 0.03
   },
   "gpt-4-1106-preview": {
     "Item1": 0.01,
-    "Item2": 0.01
+    "Item2": 0.03
   },
   "gpt-4-32k": {
     "Item1": 0.06,
-    "Item2": 0.06
+    "Item2": 0.12
   },
   "gpt-4-32k-0314": {
     "Item1": 0.06,
-    "Item2": 0.06
+    "Item2": 0.12
   },
   "gpt-4-32k-0613": {
     "Item1": 0.06,
-    "Item2": 0.06
+    "Item2": 0.12
   },
   "claude-3-5-sonnet-20240620": {
     "Item1": 0.003,
-    "Item2": 0.003
+    "Item2": 0.015
   },
   "claude-3-opus-20240229": {
     "Item1": 0.015,
-    "Item2": 0.015
+    "Item2": 0.075
   },
   "claude-3-sonnet-20240229": {
     "Item1": 0.003,
-    "Item2": 0.003
+    "Item2": 0.015
   },
   "claude-3-haiku-20240307": {
     "Item1": 0.00025,
-    "Item2": 0.00025
+    "Item2": 0.00125
   },
   "gemini-1.5-pro": {
     "Item1": 0.00125,
-    "Item2": 0.00125
+    "Item2": 0.005
   },
   "gemini-1.5-flash": {
     "Item1": 7.5E-05,
-    "Item2": 7.5E-05
+    "Item2": 0.0003
   },
   "gpt-3.5-turbo-0301": {
     "Item1": 0.0015,
-    "Item2": 0.0015
+    "Item2": 0.002
   },
   "gpt-4-1106-vision-preview": {
     "Item1": 0.01,
-    "Item2": 0.01
+    "Item2": 0.03
   },
   "gpt-4-vision-preview": {
     "Item1": 0.01,
-    "Item2": 0.01
+    "Item2": 0.03
   }
 }
